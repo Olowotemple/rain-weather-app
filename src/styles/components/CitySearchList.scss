@@ -1,0 +1,49 @@
+@use '../utils' as *;
+
+.city-search-list {
+  width: 100%;
+  margin: 0;
+  border-right: pxToRem(1) solid var(--black-faint);
+  border-bottom: pxToRem(1) solid var(--black-faint);
+  border-left: pxToRem(1) solid var(--black-faint);
+  font-style: italic;
+  z-index: 1;
+  position: absolute;
+  background-color: white;
+
+  &--excessive {
+    border-top: pxToRem(1) solid var(--black-faint);
+    padding: pxToRem(10) pxToRem(5);
+  }
+
+  &--not-found {
+    border-top: pxToRem(1) solid var(--black-faint);
+    padding: pxToRem(10) pxToRem(5);
+  }
+
+  &--list {
+    padding: 0;
+    > * {
+      width: 100%;
+      padding: pxToRem(10) pxToRem(5);
+      list-style: none;
+      cursor: pointer;
+
+      &:first-of-type {
+        border-top: pxToRem(1) solid var(--black-faint);
+      }
+
+      &:not(:last-of-type) {
+        border-bottom: pxToRem(1) solid var(--black-faint);
+      }
+
+      &:hover {
+        background-color: hsl(208, 13%, 95%);
+      }
+
+      > a {
+        display: block;
+      }
+    }
+  }
+}

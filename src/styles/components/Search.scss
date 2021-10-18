@@ -3,6 +3,7 @@
 .search {
   width: 70%;
   border: 1px solid var(--black-faint);
+  position: relative;
 
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;

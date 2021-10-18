@@ -1,0 +1,45 @@
+@use '../utils' as *;
+
+.favourite {
+  width: 100%;
+  margin: pxToRem(10) 0;
+  border: pxToRem(1) solid var(--black-faint);
+  padding: 1%;
+  display: flex;
+  flex-flow: column nowrap;
+
+  &__desc {
+    margin: 0 0 pxToRem(10) 0;
+    display: flex;
+    font-weight: normal;
+
+    > svg {
+      padding: 0 0 0 pxToRem(1);
+      fill: var(--edit);
+    }
+  }
+
+  &__cities {
+    display: flex;
+    padding: pxToRem(15);
+  }
+
+  &__city {
+    margin: pxToRem(5);
+    border: pxToRem(1) solid var(--edit);
+    padding: pxToRem(15);
+    font-weight: bold;
+
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.2) 0 pxToRem(18) pxToRem(50) pxToRem(-10);
+      border: pxToRem(1) solid var(--black-faint);
+      color: var(--edit);
+    }
+  }
+
+  &__none {
+    font-style: italic;
+    margin: 0;
+    padding: pxToRem(15);
+  }
+}

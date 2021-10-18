@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ReactComponent as SearchIcon } from '../svg/search.svg';
+import CitySearchList from './CitySearchList';
 
 const Search = () => {
   const [search, setSearch] = useState('');
@@ -16,6 +17,7 @@ const Search = () => {
           onChange={(evt) => setSearch(evt.target.value)}
         />
       </div>
+      {search && <CitySearchList search={search} />}
     </div>
   );
 };
