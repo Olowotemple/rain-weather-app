@@ -1,0 +1,65 @@
+@use '../utils' as *;
+
+.note {
+  margin: 0 0 pxToRem(10) pxToRem(5);
+  border: pxToRem(1) solid var(--black-faint);
+  padding: pxToRem(10);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+
+  &__main {
+    margin: 0 0 pxToRem(35) 0;
+    text-align: left;
+    word-break: break-all;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__actions {
+      &__edit {
+        width: pxToRem(30);
+        height: pxToRem(30);
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+
+        > svg {
+          width: 100%;
+          height: 100%;
+          fill: var(--black-faint);
+
+          &:hover {
+            fill: var(--edit);
+          }
+        }
+      }
+
+      &__remove {
+        width: pxToRem(30);
+        height: pxToRem(30);
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+
+        > svg {
+          width: 100%;
+          height: 100%;
+          fill: var(--black-faint);
+
+          &:hover {
+            fill: var(--remove);
+          }
+        }
+      }
+    }
+  }
+
+  &__date-created {
+    font-size: pxToRem(13);
+    margin: 0;
+  }
+}

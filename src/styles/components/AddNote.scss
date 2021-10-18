@@ -1,0 +1,50 @@
+@use '../utils' as *;
+
+.add-note {
+  flex: 1;
+  padding: 0 3% 3% 3%;
+
+  > #addNote {
+    width: 100%;
+    height: pxToRem(350);
+    outline: none;
+    border: pxToRem(1) solid var(--black-faint);
+    border-radius: pxToRem(5);
+    padding: pxToRem(5);
+    font-size: pxToRem(16);
+    word-break: break-all;
+    background-color: transparent;
+    resize: none;
+    overflow-y: hidden;
+
+    &::placeholder {
+      color: var(--black-faint);
+      font-style: italic;
+      word-break: break-all;
+    }
+
+    &:focus {
+      box-shadow: rgba(6, 24, 44, 0.4) 0 0 0 pxToRem(2),
+        rgba(6, 24, 44, 0.65) 0 pxToRem(4) pxToRem(6) pxToRem(-1),
+        rgba(255, 255, 255, 0.08) 0 pxToRem(1) 0 inset;
+    }
+  }
+
+  &__submit {
+    height: pxToRem(35);
+    margin: 3% 0 0 0;
+    background: none;
+    outline: none;
+    border: pxToRem(1) solid var(--black-faint);
+
+    &:hover {
+      box-shadow: rgba(255, 255, 255, 0.2) 0 0 0 pxToRem(1) inset,
+        rgba(0, 0, 0, 0.9) 0 0 0 pxToRem(1);
+    }
+
+    &:focus {
+      box-shadow: rgba(255, 255, 255, 0.2) 0 0 0 pxToRem(1) inset,
+        rgba(0, 0, 0, 0.9) 0 0 0 pxToRem(1);
+    }
+  }
+}

@@ -13,19 +13,20 @@ html {
 }
 
 body {
-  width: 100vw;
   height: 100vh;
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
   font-family: var(--font-main);
   writing-mode: horizontal-tb;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  border: 1px solid crimson;
 }
 
 #root {
   max-width: pxToRem(1024);
   height: 100%;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
 }

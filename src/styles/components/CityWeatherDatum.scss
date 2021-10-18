@@ -1,0 +1,42 @@
+@use '../utils' as *;
+
+.city-weather-datum {
+  width: 100%;
+  height: pxToRem(120);
+  margin: 0 2.5% 3% 2.5%;
+  border: 1px solid var(--black-faint);
+  border-radius: pxToRem(5);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-between;
+
+  &__desc {
+    font-size: pxToRem(12);
+    font-weight: bold;
+  }
+
+  &__header {
+    margin: pxToRem(5) 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-transform: uppercase;
+
+    > svg {
+      width: pxToRem(20);
+      height: auto;
+      margin-right: pxToRem(3);
+    }
+  }
+
+  &__main {
+    margin-bottom: pxToRem(40);
+    font-size: pxToRem(32);
+  }
+
+  &__unit {
+    font-size: pxToRem(15);
+    font-weight: bold;
+  }
+}

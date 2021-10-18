@@ -1,0 +1,9 @@
+@use '../utils' as *;
+
+.city-weather-data {
+  grid-area: data;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: pxToRem(120);
+  grid-gap: pxToRem(10);
+}
