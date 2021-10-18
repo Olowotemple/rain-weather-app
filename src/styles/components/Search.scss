@@ -1,0 +1,36 @@
+@use '../utils' as *;
+
+.search {
+  width: 70%;
+  border: 1px solid var(--black-faint);
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+  }
+
+  &__control {
+    height: pxToRem(40);
+    padding: 0 pxToRem(5);
+    display: flex;
+    align-items: center;
+  }
+
+  &__input {
+    flex: 1;
+    height: 100%;
+    margin: 0 0 0 pxToRem(10);
+    border: none;
+    outline: none;
+    font-size: pxToRem(18);
+
+    &::placeholder {
+      font-style: italic;
+    }
+  }
+
+  &__icon {
+    width: pxToRem(25);
+    height: auto;
+    fill: var(--black-faint);
+  }
+}

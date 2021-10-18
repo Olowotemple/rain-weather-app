@@ -1,0 +1,12 @@
+@use '../utils' as *;
+
+.header {
+  // width: 100%;
+  margin: 5% 1% 0 1%;
+  padding: 1%;
+  text-align: center;
+
+  &__tagline {
+    margin: pxToRem(10) 0 0 0;
+  }
+}

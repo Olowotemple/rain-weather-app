@@ -1,0 +1,13 @@
+@use '../utils' as *;
+
+.logo {
+  // margin: 20px;
+  font-family: var(--font-logo);
+  font-size: pxToRem(20);
+  text-transform: capitalize;
+}
+
+.logo--big {
+  margin: 1%;
+  font-size: pxToRem(80);
+}
