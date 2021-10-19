@@ -1,0 +1,30 @@
+@use '../utils' as *;
+
+.notification {
+  width: pxToRem(250);
+  padding: pxToRem(10);
+  position: absolute;
+  top: pxToRem(64);
+  right: pxToRem(30);
+  font-weight: bold;
+  color: white;
+
+  &__msg {
+    margin: 0;
+  }
+
+  > svg {
+    width: pxToRem(40);
+    height: auto;
+  }
+}
+
+.notification--success {
+  color: green;
+  border: 1px solid green;
+}
+
+.notification--reject {
+  color: red;
+  border: 1px solid red;
+}

@@ -10,6 +10,7 @@ const AddNote = ({
   cityNotes,
   setCityNotes,
   cityName,
+  setNotification,
 }) => {
   const submitNote = (evt) => {
     evt.preventDefault();
@@ -24,6 +25,10 @@ const AddNote = ({
 
       if (!editedNote.text.length) {
         // Do not accept empty edits
+        setNotification({ msg: 'You cannot save an empty edit', warn: true });
+        setTimeout(() => {
+          setNotification(null);
+        }, 2500);
         return;
       }
 
@@ -42,6 +47,10 @@ const AddNote = ({
       const newCityNote = { ...cityNote, notes: newNotes };
       const newCityNotes = [...filteredCityNotes, newCityNote];
       saveToStorage('cityNotes', newCityNotes);
+      setNotification({ msg: 'Your edit was successfully saved' });
+      setTimeout(() => {
+        setNotification(null);
+      }, 2500);
       setCityNotes(newCityNotes);
       setText('');
       setIsEditing(false);
@@ -53,9 +62,12 @@ const AddNote = ({
       };
 
       if (!newNote.text.length) {
-        return;
         // Don't accept empty notes
-        // return notifcation
+        setNotification({ msg: 'You cannot save an empty note', warn: true });
+        setTimeout(() => {
+          setNotification(null);
+        }, 2500);
+        return;
       }
 
       if (
@@ -70,6 +82,7 @@ const AddNote = ({
         const newCityNote = { ...cityNote, notes };
         const newCityNotes = [...filteredCityNotes, newCityNote];
         saveToStorage('cityNotes', newCityNotes);
+
         setCityNotes(newCityNotes);
       } else {
         const newCityNote = { city: cityName, notes: [newNote] };
@@ -77,6 +90,10 @@ const AddNote = ({
         saveToStorage('cityNotes', newCityNotes);
         setCityNotes(newCityNotes);
       }
+      setNotification({ msg: 'Your note was successfully saved' });
+      setTimeout(() => {
+        setNotification(null);
+      }, 2500);
       setText('');
     }
   };

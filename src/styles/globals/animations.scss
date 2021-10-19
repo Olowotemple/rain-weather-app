@@ -1,0 +1,29 @@
+@keyframes loading {
+  0% {
+    color: var(--loading-zero);
+  }
+
+  20% {
+    color: var(--loading-twenty);
+  }
+
+  45% {
+    color: var(--loading-forty-five);
+  }
+
+  65% {
+    color: var(--loading-sixty-five);
+  }
+
+  85% {
+    color: var(--loading-eighty-five);
+  }
+
+  100% {
+    color: var(--loading-hundred);
+  }
+}
+
+.loading {
+  animation: loading infinite 18s ease-in-out;
+}

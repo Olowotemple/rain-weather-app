@@ -4,7 +4,7 @@ import Note from './Note';
 import { readFromStorage, saveToStorage } from '../utils/helperFunctions';
 import { ReactComponent as SavedIcon } from '../svg/saveNote.svg';
 
-const Notes = ({ cityName }) => {
+const Notes = ({ cityName, setNotification }) => {
   const [cityNotes, setCityNotes] = useState(
     readFromStorage('cityNotes') || []
   );
@@ -21,6 +21,10 @@ const Notes = ({ cityName }) => {
     const newCityNote = { ...cityNote, notes: filteredNotes };
     const newCityNotes = [...filteredCityNotes, newCityNote];
     saveToStorage('cityNotes', newCityNotes);
+    setNotification({ msg: 'Your note was successfully deleted' });
+    setTimeout(() => {
+      setNotification(null);
+    }, 2500);
     setCityNotes(newCityNotes);
   };
 
@@ -54,6 +58,7 @@ const Notes = ({ cityName }) => {
         cityNotes={cityNotes}
         setCityNotes={setCityNotes}
         cityName={cityName}
+        setNotification={setNotification}
       />
       {notes.length ? (
         <div className="notes__view">
@@ -63,6 +68,7 @@ const Notes = ({ cityName }) => {
               note={note}
               removeNote={removeNote}
               editNote={editNote}
+              setNotification={setNotification}
             />
           ))}
         </div>

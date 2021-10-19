@@ -2,38 +2,42 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Logo from '../components/Logo';
-import CityWeatherData from '../components/CityWeatherData';
 import Notes from '../components/Notes';
+import CityDetails from '../components/CityDetails';
+import Loading from '../components/Loading';
+import CityWeatherData from '../components/CityWeatherData';
+import Notification from '../components/Notification';
 import weatherService from '../services/weather';
 import {
   formatUtcOffset,
   readFromStorage,
   saveToStorage,
 } from '../utils/helperFunctions';
-import CityDetails from '../components/CityDetails';
-import Loading from '../components/Loading';
 
 const Detail = () => {
   const [details, setDetails] = useState(readFromStorage('details') || []);
-  const { city: cityName } = useParams();
+  const [notification, setNotification] = useState(null);
+  const { city } = useParams();
+  const cityName = city.slice(0, 1).toUpperCase() + city.slice(1); // match case of the API
 
   useEffect(() => {
     const cancelTokenSource = axios.CancelToken.source();
-
     (async function () {
       try {
         const detail = await weatherService.getWeatherData(
           cityName,
           cancelTokenSource
         );
-        const filteredDetails = details.filter(
-          (detail) => detail.location.name !== cityName
-        );
-        const newDetails = [detail, ...filteredDetails];
-        if (detail) {
-          saveToStorage('details', newDetails);
-          setDetails(newDetails);
-        }
+        setDetails((prevDetails) => {
+          const filteredDetails = prevDetails.filter(
+            (detail) => detail.location.name !== cityName
+          );
+          const newDetails = [detail, ...filteredDetails];
+          if (detail) {
+            saveToStorage('details', newDetails);
+            return newDetails;
+          }
+        });
       } catch (err) {
         console.error(err);
       }
@@ -42,7 +46,7 @@ const Detail = () => {
     return () => {
       cancelTokenSource.cancel();
     };
-  }, [cityName, details]);
+  }, [cityName]);
 
   const detail =
     details.find((detail) => detail.location.name === cityName) || {};
@@ -55,6 +59,7 @@ const Detail = () => {
 
     return (
       <div className="detail">
+        <Notification notification={notification} />
         <Logo />
 
         <CityDetails
@@ -62,11 +67,12 @@ const Detail = () => {
           query={query}
           localTime={localTime}
           utcOffset={utcOffset}
+          setNotification={setNotification}
         />
 
         <section className="city__data">
           <CityWeatherData current={current} />
-          <Notes cityName={cityName} />
+          <Notes cityName={cityName} setNotification={setNotification} />
         </section>
       </div>
     );

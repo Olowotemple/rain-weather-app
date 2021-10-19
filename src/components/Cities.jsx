@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios';
 import City from './City';
 import cityService from '../services/city';
 import weatherService from '../services/weather';
@@ -13,9 +14,10 @@ const Cities = () => {
   const [cities, setCities] = useState(readFromStorage('cities') || []);
 
   useEffect(() => {
+    const cancelTokenSource = axios.CancelToken.source();
     (async function () {
       try {
-        const cities = await cityService.getCities();
+        const cities = await cityService.getCities(cancelTokenSource);
         const sortedCities = cities
           .slice(0, 15)
           .map((city) => city.Name)
@@ -33,6 +35,10 @@ const Cities = () => {
         console.error(err);
       }
     })();
+
+    return () => {
+      cancelTokenSource.cancel();
+    };
   }, []);
 
   const removeCity = (evt, name) => {

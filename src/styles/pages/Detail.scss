@@ -4,6 +4,7 @@
   min-height: calc(100vh - pxToRem(20) - pxToRem(10));
   grid-column: 1 / 13;
   text-align: center;
+  position: relative;
 }
 
 .city {
