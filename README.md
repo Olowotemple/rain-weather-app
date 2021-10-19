@@ -1,10 +1,11 @@
-# Getting Started with Create React App
+# Rain
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Discover accurate, real-time weather information for your city.
+![A capture from the Rain weather app](./images/misc.png)
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory (root), you can run:
 
 ### `yarn start`
 
@@ -39,32 +40,28 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## How the App Works
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- On every inital render, the user is greeted with fiften (15) most populous cities in the world (sorted alphabetically), these cities could be removed by user to clean up the page, as shown below:
+  ![Homepage](./images/homepage.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+-User can search for a city by typing the name of the city in the search space provided.
 
-### Code Splitting
+-Clicking on a city takes user to a details page that gives the user even more weather information for that city, shown below:
+![Details page](./images/detailsPage.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- On the details page,
 
-### Analyzing the Bundle Size
+  - User can add a city to a list of favourites using the blue button next to the city name as shown below:
+    ![Add city to favourites](./images/addToFavourites.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+  - User can remove a city from your list of favourites using the red button next to the city name as shown below:
+    ![Remove city from favourites](./images/removeFromFavourites.png)
 
-### Making a Progressive Web App
+  - User can add, edit and remove notes for a particular city, shown below:
+    ![Add, edit and remove notes](./images/addEditRemoveNotes.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- A User's list of favourited cities (sorted alphabetically) shows up just below the search area on the homepage, show below:
+  ![View favourites](./images/viewFavourites.png)
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Clicking on a favourited city takes user to the details page with current weather information and notes for that city, as shown above in No. 3.
