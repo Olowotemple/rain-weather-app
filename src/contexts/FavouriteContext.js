@@ -10,7 +10,7 @@ export const FavouriteContextProvider = ({ children }) => {
 
   const addToFavourite = (name) => {
     const favourite = [...favourites, name];
-    saveToStorage('favourite', favourite);
+    saveToStorage('favourites', favourite);
     setFavourites(favourite);
   };
 
