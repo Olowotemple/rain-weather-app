@@ -1,6 +1,6 @@
 # Rain
 
-Discover accurate, real-time weather information for your city.
+Discover accurate, real-time weather information for your city, [View Live](https://festive-shannon-ae718e.netlify.app/).
 ![A capture from the Rain weather app](./images/misc.png)
 
 ## Available Scripts
