@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { useFavouriteContext } from '../contexts/FavouriteContext';
 import { ReactComponent as RemoveFromFavouriteIcon } from '../svg/removeFromFavourites.svg';
 import { ReactComponent as AddToFavouriteIcon } from '../svg/addToFavourites.svg';
@@ -9,21 +10,28 @@ const CityDetails = ({
   utcOffset,
   setNotification,
 }) => {
+  const timerIDRef = useRef(null);
   const { favourites, addToFavourite, removeFromFavourite } =
     useFavouriteContext();
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timerIDRef.current);
+    };
+  }, []);
 
   const handleFavouriteAction = (evt, name) => {
     evt.stopPropagation();
     const basis = evt.target.getAttribute('aria-label');
     if (basis === 'add to favourites') {
       setNotification({ msg: `${name} was added to your favourites` });
-      setTimeout(() => {
+      timerIDRef.current = setTimeout(() => {
         setNotification(null);
       }, 2500);
       return addToFavourite(name);
     }
     setNotification({ msg: `${name} was removed from your favourites` });
-    setTimeout(() => {
+    timerIDRef.current = setTimeout(() => {
       setNotification(null);
     }, 2500);
     removeFromFavourite(name);

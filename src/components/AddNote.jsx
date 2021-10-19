@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { saveToStorage } from '../utils/helperFunctions';
 
@@ -12,6 +13,14 @@ const AddNote = ({
   cityName,
   setNotification,
 }) => {
+  const timerIDRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timerIDRef.current);
+    };
+  }, []);
+
   const submitNote = (evt) => {
     evt.preventDefault();
 
@@ -26,7 +35,7 @@ const AddNote = ({
       if (!editedNote.text.length) {
         // Do not accept empty edits
         setNotification({ msg: 'You cannot save an empty edit', warn: true });
-        setTimeout(() => {
+        timerIDRef.current = setTimeout(() => {
           setNotification(null);
         }, 2500);
         return;
@@ -48,7 +57,7 @@ const AddNote = ({
       const newCityNotes = [...filteredCityNotes, newCityNote];
       saveToStorage('cityNotes', newCityNotes);
       setNotification({ msg: 'Your edit was successfully saved' });
-      setTimeout(() => {
+      timerIDRef.current = setTimeout(() => {
         setNotification(null);
       }, 2500);
       setCityNotes(newCityNotes);
@@ -64,7 +73,7 @@ const AddNote = ({
       if (!newNote.text.length) {
         // Don't accept empty notes
         setNotification({ msg: 'You cannot save an empty note', warn: true });
-        setTimeout(() => {
+        timerIDRef.current = setTimeout(() => {
           setNotification(null);
         }, 2500);
         return;
@@ -91,7 +100,7 @@ const AddNote = ({
         setCityNotes(newCityNotes);
       }
       setNotification({ msg: 'Your note was successfully saved' });
-      setTimeout(() => {
+      timerIDRef.current = setTimeout(() => {
         setNotification(null);
       }, 2500);
       setText('');

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import AddNote from '../components/AddNote';
 import Note from './Note';
 import { readFromStorage, saveToStorage } from '../utils/helperFunctions';
@@ -11,6 +11,13 @@ const Notes = ({ cityName, setNotification }) => {
   const [text, setText] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [isEditingNote, setIsEditingNote] = useState({});
+  const timerIDRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timerIDRef);
+    };
+  }, []);
 
   const removeNote = (id) => {
     const cityNote = cityNotes.find((cityNote) => cityNote.city === cityName);
@@ -22,7 +29,7 @@ const Notes = ({ cityName, setNotification }) => {
     const newCityNotes = [...filteredCityNotes, newCityNote];
     saveToStorage('cityNotes', newCityNotes);
     setNotification({ msg: 'Your note was successfully deleted' });
-    setTimeout(() => {
+    timerIDRef.current = setTimeout(() => {
       setNotification(null);
     }, 2500);
     setCityNotes(newCityNotes);
