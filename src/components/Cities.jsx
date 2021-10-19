@@ -3,10 +3,14 @@ import { v4 as uuidv4 } from 'uuid';
 import City from './City';
 import cityService from '../services/city';
 import weatherService from '../services/weather';
-import { sortAlphabetically } from '../utils/helperFunctions';
+import {
+  sortAlphabetically,
+  readFromStorage,
+  saveToStorage,
+} from '../utils/helperFunctions';
 
 const Cities = () => {
-  const [cities, setCities] = useState([]);
+  const [cities, setCities] = useState(readFromStorage('cities') || []);
 
   useEffect(() => {
     (async function () {
@@ -20,6 +24,10 @@ const Cities = () => {
           weatherService.getWeatherData(city)
         );
         const citiesWithData = await Promise.all(promisifiedCities);
+        if (citiesWithData.includes(null)) {
+          return readFromStorage('cities');
+        }
+        saveToStorage('cities', citiesWithData);
         setCities(citiesWithData);
       } catch (err) {
         console.error(err);

@@ -31,3 +31,11 @@ export const formatNoteDate = (dateInput) => {
   const time = dateObj.toLocaleTimeString();
   return [time, date];
 };
+
+export const readFromStorage = (key) => {
+  return JSON.parse(localStorage.getItem(key));
+};
+
+export const saveToStorage = (key, data) => {
+  localStorage.setItem(key, JSON.stringify(data));
+};
