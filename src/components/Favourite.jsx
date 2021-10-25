@@ -27,7 +27,9 @@ const Favourite = () => {
   }
   return (
     <section className="favourite">
-      <h2 className="favourite__desc">Your favourite Cities</h2>
+      <h2 className="favourite__desc">
+        Your favourite Cities <FavouriteCityIcon />
+      </h2>
       <p className="favourite__none">visit a city to add to favourites...</p>
     </section>
   );
